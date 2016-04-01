@@ -23,12 +23,12 @@ public class CheckoutTest {
     @Test
     public void total_should_calculate_correct_total_for_a_shopping_basket_for_a_single_apple() {
         // Given
-        List<Fruit> shoppingBasket = Arrays.asList(Fruit.APPLE);
+        List<Fruit> shoppingBasket = Arrays.asList(Fruit.APPLE, Fruit.APPLE);
 
         // When
         double total = checkoutService.total(shoppingBasket);
 
         // Then
-        assertThat("The total price is incorrect ", total, is(0.60));
+        assertThat("The total price is incorrect ", total, is(1.20));
     }
 }
