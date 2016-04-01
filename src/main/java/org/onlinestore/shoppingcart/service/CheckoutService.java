@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.onlinestore.shoppingcart.exception.EmptyCartException;
 import org.onlinestore.shoppingcart.model.Fruit;
 
 /**
@@ -20,6 +21,9 @@ public class CheckoutService {
     }
     
     public double total(final List<Fruit> shoppingBasket) {
+    	if(shoppingBasket == null || shoppingBasket.isEmpty()){
+    		throw new EmptyCartException("Cart should not be empty before checkout");
+    	}
     	 return shoppingBasket.stream().map(priceCatalog::get)
     			 	.reduce(0D, (runningResult, currElement) -> runningResult + currElement);
     }

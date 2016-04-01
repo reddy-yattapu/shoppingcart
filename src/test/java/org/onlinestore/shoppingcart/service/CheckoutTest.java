@@ -2,6 +2,7 @@ package org.onlinestore.shoppingcart.service;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+
 import org.onlinestore.shoppingcart.service.CheckoutService;
 
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.onlinestore.shoppingcart.exception.EmptyCartException;
 import org.onlinestore.shoppingcart.model.Fruit;
 
 public class CheckoutTest {
@@ -55,6 +57,16 @@ public class CheckoutTest {
 
 		// Then
 		assertThat("The total price is incorrect ", total, is(2.30));
+	}
+	
+	@Test(expected = EmptyCartException.class)
+	public void should_throw_exception_for_empty_cart() {
+		// Given
+		List<Fruit> shoppingBasket = null;
+
+		// When
+		double total = checkoutService.total(shoppingBasket);
+
 	}
 
 }
