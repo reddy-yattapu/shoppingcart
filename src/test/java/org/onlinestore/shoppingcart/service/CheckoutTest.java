@@ -31,4 +31,16 @@ public class CheckoutTest {
         // Then
         assertThat("The total price is incorrect ", total, is(1.20));
     }
+    
+    @Test
+    public void total_should_calculate_correct_total_for_a_shopping_basket_for_a_single_orange() {
+        // Given
+        List<Fruit> shoppingBasket = Arrays.asList(Fruit.ORANGE);
+
+        // When
+        double total = checkoutService.total(shoppingBasket);
+
+        // Then
+        assertThat("The total price is incorrect ", total, is(0.25));
+    }
 }

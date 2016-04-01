@@ -16,6 +16,7 @@ public class CheckoutService {
 
     static {
         priceCatalog.put(Fruit.APPLE, 0.60);
+        priceCatalog.put(Fruit.ORANGE, 0.25);
     }
     
     public double total(final List<Fruit> shoppingBasket) {
