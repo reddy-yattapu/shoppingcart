@@ -26,13 +26,13 @@ public class CheckoutTest {
 	@Test
 	public void total_should_calculate_correct_total_for_a_shopping_basket_for_a_single_apple() {
 		// Given
-		List<Fruit> shoppingBasket = Arrays.asList(Fruit.APPLE, Fruit.APPLE);
+		List<Fruit> shoppingBasket = Arrays.asList(Fruit.APPLE);
 
 		// When
 		double total = checkoutService.total(shoppingBasket);
 
 		// Then
-		assertThat("The total price is incorrect ", total, is(1.20));
+		assertThat("The total price is incorrect ", total, is(0.60));
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class CheckoutTest {
 		double total = checkoutService.total(shoppingBasket);
 
 		// Then
-		assertThat("The total price is incorrect ", total, is(2.30));
+		assertThat("The total price is incorrect ", total, is(1.70));
 	}
 	
 	@Test(expected = EmptyCartException.class)
@@ -79,5 +79,18 @@ public class CheckoutTest {
 		double total = checkoutService.total(shoppingBasket);
 
 	}
+	
+	  @Test
+	  public void total_should_calculate_correct_total_with_by_one_get_one_offer_for_apples() {
+	      // Given (assumption, the cart has the correct number of apples based on the offer)
+	      List<Fruit> shoppingBasket = Arrays.asList(Fruit.APPLE, Fruit.APPLE);
+	 
+	      // When
+	      double total = checkoutService.total(shoppingBasket);
+	 
+	      // Then
+	      assertThat("The total price is incorrect ", total, is(0.60));
+	  }
+
 
 }
