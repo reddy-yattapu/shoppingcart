@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.onlinestore.shoppingcart.service.CheckoutService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,9 +61,19 @@ public class CheckoutTest {
 	}
 	
 	@Test(expected = EmptyCartException.class)
-	public void should_throw_exception_for_empty_cart() {
+	public void should_throw_exception_for_null_cart() {
 		// Given
 		List<Fruit> shoppingBasket = null;
+
+		// When
+		double total = checkoutService.total(shoppingBasket);
+
+	}
+	
+	@Test(expected = EmptyCartException.class)
+	public void should_throw_exception_for_empty_cart() {
+		// Given
+		List<Fruit> shoppingBasket = new ArrayList<Fruit>();
 
 		// When
 		double total = checkoutService.total(shoppingBasket);
